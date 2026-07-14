@@ -2,6 +2,11 @@
 
 Landing page statique présentant une infrastructure d’entreprise qui réunit CRM, finance, opérations, documents, savoir d’équipe et agents IA gouvernés.
 
+## Liens
+
+- Démonstration : [legacy-infrastructure-dirigeant.vercel.app](https://legacy-infrastructure-dirigeant.vercel.app)
+- Dépôt public : [baptistefort/legacy-infrastructure-dirigeant](https://github.com/baptistefort/legacy-infrastructure-dirigeant)
+
 ## Fichiers
 
 - `index.html` — structure et contenu
