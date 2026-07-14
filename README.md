@@ -1,11 +1,11 @@
-# LEGACY — L’infrastructure IA du dirigeant
+# OPS — L’infrastructure IA du dirigeant
 
 Landing page statique présentant une infrastructure d’entreprise qui réunit CRM, finance, opérations, documents, savoir d’équipe et agents IA gouvernés.
 
 ## Liens
 
-- Démonstration : [legacy-infrastructure-dirigeant.vercel.app](https://legacy-infrastructure-dirigeant.vercel.app)
-- Dépôt public : [baptistefort/legacy-infrastructure-dirigeant](https://github.com/baptistefort/legacy-infrastructure-dirigeant)
+- Démonstration : [site en production](https://legacy-infrastructure-dirigeant.vercel.app)
+- Dépôt public : [code source public](https://github.com/baptistefort/legacy-infrastructure-dirigeant)
 
 ## Fichiers
 
