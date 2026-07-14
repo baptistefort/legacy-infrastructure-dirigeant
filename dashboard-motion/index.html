@@ -64,7 +64,7 @@
       .app-shell {
         position: absolute;
         inset: 0;
-        opacity: 0;
+        opacity: 1;
         display: grid;
         grid-template-columns: 248px 1fr;
         overflow: hidden;
@@ -311,7 +311,7 @@
         background: var(--off-white);
       }
 
-      .message { display: flex; align-items: flex-start; gap: 10px; max-width: 84%; will-change: transform, opacity; }
+      .message { display: flex; align-items: flex-start; gap: 10px; max-width: 84%; opacity: 0; will-change: transform, opacity; }
       .message.user { align-self: flex-end; justify-content: flex-end; max-width: 68%; }
       .message.ai { align-self: flex-start; }
       .agent-mini { width: 28px; height: 28px; flex: 0 0 auto; margin-top: 3px; font-size: 7px; }
@@ -349,6 +349,7 @@
         background: var(--surface);
         box-shadow: 0 7px 17px var(--navy-08);
         pointer-events: none;
+        opacity: 0;
       }
       .typing-indicator span { width: 5px; height: 5px; border-radius: 50%; background: var(--blue); }
       #typing-1 { top: 59px; }
@@ -373,9 +374,10 @@
         font: 700 7px/1 Space Mono, monospace;
         letter-spacing: 0.07em;
         text-transform: uppercase;
+        opacity: 0;
       }
       .final-state::before { width: 7px; height: 7px; border-radius: 50%; background: var(--green); content: ""; }
-      .memory-progress { position: absolute; z-index: 6; right: 22px; bottom: 9px; width: 174px; height: 2px; background: var(--green); transform-origin: 0 50%; }
+      .memory-progress { position: absolute; z-index: 6; right: 22px; bottom: 9px; width: 174px; height: 2px; opacity: 0; background: var(--green); transform-origin: 0 50%; }
 
     </style>
   </head>
@@ -471,12 +473,6 @@
 
       const tl = gsap.timeline({ paused: true });
 
-      tl.fromTo(".app-shell", { opacity: 0 }, { opacity: 1, duration: 0.68, ease: "sine.inOut" }, 0);
-      tl.fromTo(".brand, .workspace, .sidebar-search, .nav-section-label, .nav-item", { x: -12, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, stagger: 0.025, ease: "power3.out" }, 0.16);
-      tl.fromTo(".heading-row", { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.24);
-      tl.fromTo(".kpi-card", { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, stagger: 0.06, ease: "power4.out" }, 0.34);
-      tl.fromTo(".conversation-card", { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 0.42);
-
       function showTyping(id, start, end) {
         tl.fromTo(id, { scale: 0.94, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.2, ease: "power3.out" }, start);
         tl.to(id, { scale: 0.97, opacity: 0, duration: 0.16, ease: "power2.in" }, end);
@@ -489,9 +485,9 @@
         if (document.querySelector(chips)) tl.fromTo(chips, { scale: 0.92, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.22, stagger: 0.05, ease: "circ.out" }, at + 0.27);
       }
 
-      showMessage("#msg-u1", 0.9, 20, "power4.out");
-      showTyping("#typing-1", 1.28, 1.6);
-      showMessage("#msg-a1", 1.75, -20, "expo.out");
+      showMessage("#msg-u1", 0.18, 20, "power4.out");
+      showTyping("#typing-1", 0.72, 0.98);
+      showMessage("#msg-a1", 1.12, -20, "expo.out");
 
       showMessage("#msg-u2", 3.4, 22, "power3.out");
       showTyping("#typing-2", 3.76, 4.1);
@@ -507,10 +503,11 @@
 
       tl.fromTo(".final-state", { x: 10, opacity: 0 }, { x: 0, opacity: 1, duration: 0.44, ease: "power4.out" }, 11.0);
       tl.fromTo(".memory-progress", { scaleX: 0.08, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.85, ease: "expo.out" }, 11.0);
-      tl.to(".live-dot", { scale: 1.3, duration: 0.38, repeat: 2, yoyo: true, ease: "sine.inOut" }, 11.1);
-
-      tl.to(".app-shell", { opacity: 1, duration: 6.75, ease: "none" }, 11.85);
-      tl.to(".app-shell", { opacity: 0, duration: 1.4, ease: "sine.inOut" }, 18.6);
+      tl.to(
+        ".thread > .message, .thread > .typing-indicator, .thread > .memory-progress, .thread > .final-state",
+        { opacity: 0, duration: 0.75, ease: "sine.inOut" },
+        19.25
+      );
 
       if (Math.abs(tl.duration() - 20) > 0.001) throw new Error("OPS desktop timeline must be exactly 20 seconds");
 
