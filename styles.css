@@ -376,6 +376,17 @@ h2 em, h1 em { color: var(--blue); font-weight: 400; }
   .proof-list { gap: 14px 17px; }
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .system-grid .system-card:not(.system-card-tint) {
+    transition: all .3s ease;
+  }
+
+  .system-grid .system-card:not(.system-card-tint):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px -10px rgba(3,22,53,.08);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
