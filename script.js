@@ -22,6 +22,9 @@ if (reduceMotion || !("IntersectionObserver" in window)) {
 
 // Interactive value mosaic.
 const bentoCards = [...document.querySelectorAll("[data-bento-card]")];
+const bento = document.querySelector("[data-bento]");
+const defaultBentoCard = bentoCards[0] ?? null;
+
 function activateBento(card) {
   bentoCards.forEach((item) => {
     const active = item === card;
@@ -29,13 +32,25 @@ function activateBento(card) {
     item.setAttribute("aria-pressed", String(active));
   });
 }
+
 bentoCards.forEach((card) => {
+  card.addEventListener("mouseenter", () => activateBento(card));
+  card.addEventListener("focus", () => activateBento(card));
   card.addEventListener("click", () => activateBento(card));
   card.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" && event.key !== " ") return;
     event.preventDefault();
     activateBento(card);
   });
+});
+
+bento?.addEventListener("mouseleave", () => {
+  if (defaultBentoCard) activateBento(defaultBentoCard);
+});
+
+bento?.addEventListener("focusout", (event) => {
+  if (bento.contains(event.relatedTarget)) return;
+  if (defaultBentoCard) activateBento(defaultBentoCard);
 });
 
 // Accessible, measured accordions. Several items may remain open.
