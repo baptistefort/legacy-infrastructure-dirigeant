@@ -66,7 +66,7 @@
         inset: 0;
         opacity: 0;
         display: grid;
-        grid-template-columns: 236px 1fr;
+        grid-template-columns: 248px 1fr;
         overflow: hidden;
         background: var(--off-white);
         transform-origin: 50% 50%;
@@ -75,7 +75,7 @@
 
       .sidebar {
         min-height: 0;
-        padding: 28px 20px 24px;
+        padding: 25px 16px 22px;
         display: flex;
         flex-direction: column;
         color: var(--navy);
@@ -102,8 +102,8 @@
       }
 
       .workspace {
-        margin-top: 28px;
-        padding: 13px;
+        margin-top: 22px;
+        padding: 12px;
         display: grid;
         grid-template-columns: 38px 1fr;
         align-items: center;
@@ -130,63 +130,72 @@
       .workspace strong { font-size: 11px; line-height: 1.25; }
       .workspace span { margin-top: 4px; color: var(--navy-72); font-size: 8px; }
 
+      .sidebar-search {
+        height: 36px;
+        margin-top: 12px;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--navy-72);
+        border: 1px solid var(--navy-08);
+        border-radius: 10px;
+        background: rgba(251, 252, 250, 0.72);
+        font-size: 9px;
+        font-weight: 700;
+      }
+
+      .sidebar-search svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.7; }
+      .sidebar-search kbd { margin-left: auto; color: rgba(3, 22, 53, 0.52); font: 700 7px/1 Space Mono, monospace; }
+
       .nav {
-        margin-top: 24px;
+        margin-top: 15px;
         display: flex;
         flex-direction: column;
-        gap: 3px;
+        gap: 2px;
+      }
+
+      .nav-section-label {
+        margin: 13px 10px 5px;
+        color: rgba(3, 22, 53, 0.48);
+        font: 700 7px/1 Space Mono, monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
       }
 
       .nav-item {
-        height: 42px;
-        padding: 0 12px;
+        height: 39px;
+        padding: 0 10px;
         display: flex;
         align-items: center;
-        gap: 11px;
+        gap: 10px;
         color: var(--navy-72);
-        border-radius: 11px;
-        font-size: 10px;
+        border: 1px solid transparent;
+        border-radius: 9px;
+        font-size: 9px;
         font-weight: 700;
       }
 
       .nav-item.active {
         color: var(--navy);
-        background: var(--pale);
-        box-shadow: inset 3px 0 0 var(--blue);
+        border-color: rgba(46, 95, 157, 0.12);
+        background: rgba(213, 227, 255, 0.86);
+        box-shadow: inset 3px 0 0 var(--blue), 0 5px 14px rgba(46, 95, 157, 0.06);
       }
 
       .nav-icon {
-        width: 22px;
-        height: 22px;
+        width: 24px;
+        height: 24px;
         display: grid;
         place-items: center;
         color: var(--blue);
-        border-radius: 7px;
+        border: 1px solid rgba(46, 95, 157, 0.1);
+        border-radius: 8px;
         background: var(--off-white);
-        font: 700 8px/1 Space Mono, monospace;
       }
 
-      .nav-item.active .nav-icon { color: var(--off-white); background: var(--blue); }
-
-      .sidebar-note {
-        margin-top: auto;
-        padding: 13px;
-        color: var(--green-text);
-        border: 1px solid rgba(71, 114, 93, 0.2);
-        border-radius: 12px;
-        background: var(--green-14);
-        font-size: 9px;
-        font-weight: 700;
-        line-height: 1.45;
-      }
-
-      .sidebar-note span {
-        display: block;
-        margin-bottom: 5px;
-        font: 700 7px/1 Space Mono, monospace;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-      }
+      .nav-icon svg { width: 13px; height: 13px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.65; }
+      .nav-item.active .nav-icon { color: var(--off-white); border-color: var(--blue); background: var(--blue); }
 
       .dashboard {
         min-width: 0;
@@ -386,17 +395,21 @@
             <aside class="sidebar">
               <div class="brand">OPS<span class="brand-mark"></span></div>
               <div class="workspace"><div class="workspace-avatar">AB</div><div><strong>Atelier Beaumarchais</strong><span>Menuiserie · Paris 11</span></div></div>
+              <div class="sidebar-search"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8.5" cy="8.5" r="4.5"></circle><path d="m12 12 4 4"></path></svg><span>Rechercher</span><kbd>⌘ K</kbd></div>
 
               <nav class="nav" aria-label="Navigation OPS">
-                <div class="nav-item"><span class="nav-icon">TB</span>Tableau de bord</div>
-                <div class="nav-item active"><span class="nav-icon">IA</span>Mon agent</div>
-                <div class="nav-item"><span class="nav-icon">CA</span>Cycle d'affaire</div>
-                <div class="nav-item"><span class="nav-icon">EM</span>Emails</div>
-                <div class="nav-item"><span class="nav-icon">DO</span>Documents</div>
-                <div class="nav-item"><span class="nav-icon">CL</span>Clients</div>
-                <div class="nav-item"><span class="nav-icon">PL</span>Planning</div>
-                <div class="nav-item"><span class="nav-icon">CR</span>CRM</div>
-                <div class="nav-item"><span class="nav-icon">CH</span>Chiffre</div>
+                <p class="nav-section-label">Pilotage</p>
+                <div class="nav-item"><span class="nav-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="5" height="5" rx="1"></rect><rect x="12" y="3" width="5" height="5" rx="1"></rect><rect x="3" y="12" width="5" height="5" rx="1"></rect><rect x="12" y="12" width="5" height="5" rx="1"></rect></svg></span>Tableau de bord</div>
+                <div class="nav-item active"><span class="nav-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m10 2 1.5 4.4L16 8l-4.5 1.6L10 14l-1.5-4.4L4 8l4.5-1.6L10 2Z"></path><path d="m15.5 13 .7 2 .8.3-.8.3-.7 2-.7-2-.8-.3.8-.3.7-2Z"></path></svg></span>Mon agent</div>
+                <p class="nav-section-label">Activité</p>
+                <div class="nav-item"><span class="nav-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 6h10"></path><path d="m11 3 3 3-3 3"></path><path d="M16 14H6"></path><path d="m9 11-3 3 3 3"></path></svg></span>Cycle d'affaire</div>
+                <div class="nav-item"><span class="nav-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="4" width="15" height="12" rx="2"></rect><path d="m3.5 6 6.5 5 6.5-5"></path></svg></span>Emails</div>
+                <div class="nav-item"><span class="nav-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M5 2.5h7l3 3V17H5V2.5Z"></path><path d="M12 2.5V6h3"></path><path d="M8 10h4M8 13h4"></path></svg></span>Documents</div>
+                <div class="nav-item"><span class="nav-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="8" cy="7" r="3"></circle><path d="M2.5 17c.5-3.1 2.3-4.7 5.5-4.7s5 1.6 5.5 4.7"></path><path d="M13 5.2c2.2.2 3.5 1.4 3.5 3.2 0 1.3-.6 2.2-1.8 2.8M15 13c1.5.6 2.3 1.9 2.5 4"></path></svg></span>Clients</div>
+                <p class="nav-section-label">Données &amp; gestion</p>
+                <div class="nav-item"><span class="nav-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4.5" width="14" height="12" rx="2"></rect><path d="M6 2.5v4M14 2.5v4M3 8.5h14M6.5 12h2M11.5 12h2"></path></svg></span>Planning</div>
+                <div class="nav-item"><span class="nav-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><ellipse cx="10" cy="4.5" rx="6" ry="2.5"></ellipse><path d="M4 4.5v5C4 11 6.7 12 10 12s6-1 6-2.5v-5M4 9.5v5C4 16 6.7 17 10 17s6-1 6-2.5v-5"></path></svg></span>CRM</div>
+                <div class="nav-item"><span class="nav-icon"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 17h14"></path><rect x="4" y="10" width="2.5" height="5.5" rx=".6"></rect><rect x="8.8" y="6" width="2.5" height="9.5" rx=".6"></rect><rect x="13.5" y="3" width="2.5" height="12.5" rx=".6"></rect></svg></span>Chiffre</div>
               </nav>
 
             </aside>
@@ -459,7 +472,7 @@
       const tl = gsap.timeline({ paused: true });
 
       tl.fromTo(".app-shell", { opacity: 0 }, { opacity: 1, duration: 0.68, ease: "sine.inOut" }, 0);
-      tl.fromTo(".brand, .workspace, .nav-item", { x: -12, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, stagger: 0.035, ease: "power3.out" }, 0.16);
+      tl.fromTo(".brand, .workspace, .sidebar-search, .nav-section-label, .nav-item", { x: -12, opacity: 0 }, { x: 0, opacity: 1, duration: 0.42, stagger: 0.025, ease: "power3.out" }, 0.16);
       tl.fromTo(".heading-row", { y: 10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" }, 0.24);
       tl.fromTo(".kpi-card", { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.42, stagger: 0.06, ease: "power4.out" }, 0.34);
       tl.fromTo(".conversation-card", { y: 15, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: "expo.out" }, 0.42);
