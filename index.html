@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;family=Manrope:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/@hyperframes/player@0.7.57/dist/hyperframes-player.global.js"></script>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2218%22 fill=%22%23031635%22/><circle cx=%2232%22 cy=%2232%22 r=%2214%22 fill=%22none%22 stroke=%22white%22 stroke-width=%226%22/></svg>">
   </head>
   <body>
@@ -116,57 +117,26 @@
             </div>
           </div>
 
-          <section class="cockpit-window reveal" aria-label="Aperçu du cockpit OPS">
-            <aside class="cockpit-sidebar">
-              <a class="mini-wordmark" href="#top">OPS<span>°</span></a>
-              <div class="company-switch"><span>AB</span><div><strong>Atelier Beaumarchais</strong><small>Menuiserie · Paris 11</small></div></div>
-              <nav aria-label="Navigation du cockpit de démonstration">
-                <p>Pilotage</p>
-                <button type="button" class="active"><svg><use href="#icon-chart" /></svg> Tableau de bord</button>
-                <button type="button"><svg><use href="#icon-spark" /></svg> Mon agent <i>3</i></button>
-                <button type="button"><svg><use href="#icon-database" /></svg> CRM</button>
-                <p>Cycle d’affaire</p>
-                <button type="button">Demandes <i>4</i></button>
-                <button type="button">Devis <i>9</i></button>
-                <button type="button">Planning</button>
-                <button type="button">Chantiers <i>7</i></button>
-                <button type="button">Facturation <i>3</i></button>
-                <p>Entreprise</p>
-                <button type="button">Documents</button>
-                <button type="button">Équipe</button>
-              </nav>
-            </aside>
-            <div class="cockpit-main">
-              <header class="cockpit-topbar"><span>Tableau de bord · aujourd’hui</span><div><button type="button">?</button><span class="cockpit-avatar">M</span></div></header>
-              <div class="cockpit-body">
-                <div class="cockpit-greeting"><div><small>MARDI 14 JUILLET · 08:03</small><h3>Bonjour Marie.</h3><p>Voici ce qui demande votre attention aujourd’hui.</p></div><span class="live-chip"><i></i> MÉMOIRE EN DIRECT</span></div>
-                <div class="metric-grid">
-                  <article><span>Pipeline</span><strong>184 K€</strong><small class="up">+12 %</small><i style="--w:72%"></i></article>
-                  <article><span>CA mois</span><strong>42,8 K€</strong><small class="up">+12 %</small><i style="--w:58%"></i></article>
-                  <article><span>Marge moyenne</span><strong>29 %</strong><small class="down">−2 pts</small><i style="--w:42%"></i></article>
-                  <article><span>Trésorerie</span><strong>67 j</strong><small class="up">OK</small><i style="--w:81%"></i></article>
-                </div>
-                <div class="cockpit-content-grid">
-                  <section class="attention-card">
-                    <div class="cockpit-card-title"><span>Ce qui demande attention</span><small>3 éléments</small></div>
-                    <button type="button"><span class="severity high">!</span><span><strong>3 clients clés inactifs depuis 60 jours</strong><small>Le pattern est inhabituel pour cette période.</small></span><svg><use href="#icon-arrow" /></svg></button>
-                    <button type="button"><span class="severity medium">↘</span><span><strong>Marge atelier en baisse depuis 3 mois</strong><small>42 heures non refacturées sur deux dossiers.</small></span><svg><use href="#icon-arrow" /></svg></button>
-                    <button type="button"><span class="severity good">✓</span><span><strong>Camille a signé 4 affaires ce mois</strong><small>Record personnel · 86 K€ de pipeline.</small></span><svg><use href="#icon-arrow" /></svg></button>
-                  </section>
-                  <section class="ops-chat">
-                    <div class="chat-heading"><span><svg><use href="#icon-spark" /></svg> Vous parlez à OPS</span><small><i></i> LIVE</small></div>
-                    <div class="chat-thread">
-                      <div class="chat-user">Qui n’a pas payé ?</div>
-                      <div class="chat-ai"><span class="chat-mark">O°</span><p>3 clients : Sophie (12 j), Pierre (28 j), Atelier Sud (5 j). Je prépare les relances ?</p></div>
-                      <div class="chat-user">Oui, mais doux pour Sophie.</div>
-                      <div class="chat-ai"><span class="chat-mark">O°</span><p><strong>✓ Préparé.</strong> Amical pour Sophie, ferme pour Pierre. Atelier Sud est encore dans les délais.</p></div>
-                    </div>
-                    <button type="button" class="chat-input">Demandez quelque chose à votre entreprise <svg><use href="#icon-arrow" /></svg></button>
-                  </section>
-                </div>
-              </div>
+          <div class="cockpit-motion-shell reveal" role="group" aria-labelledby="cockpit-animation-title" data-cockpit-motion data-desktop-src="dashboard-motion/index.html" data-mobile-src="dashboard-motion/mobile/index.html">
+            <picture class="cockpit-motion-poster cockpit-motion-poster-start" aria-hidden="true">
+              <source media="(max-width: 1024px)" srcset="dashboard-motion/mobile/snapshots/frame-00-at-0.6s.png">
+              <img src="dashboard-motion/snapshots/frame-00-at-0.6s.png" alt="" loading="lazy" decoding="async">
+            </picture>
+            <picture class="cockpit-motion-poster cockpit-motion-poster-final" aria-hidden="true">
+              <source media="(max-width: 1024px)" srcset="dashboard-motion/mobile/snapshots/frame-04-at-17.7s.png">
+              <img src="dashboard-motion/snapshots/frame-04-at-17.7s.png" alt="" loading="lazy" decoding="async">
+            </picture>
+            <div class="cockpit-motion-mount" aria-hidden="true" inert></div>
+            <div class="sr-only">
+              <h3 id="cockpit-animation-title">Conversation animée entre une dirigeante et l’agent IA OPS</h3>
+              <ol>
+                <li>La dirigeante demande qui doit être relancé aujourd’hui. OPS identifie Atelier Sud, Nova et Maison Cobalt à partir du CRM et des factures.</li>
+                <li>Elle demande une relance douce pour Atelier Sud et ferme pour Nova. OPS prépare deux brouillons soumis à validation.</li>
+                <li>Elle demande pourquoi la marge atelier baisse. OPS attribue 82 % de l’écart au chantier Rivoli et cite les données projet et temps.</li>
+                <li>Elle demande une correction et un brief à 17 heures. OPS assigne trois tâches, programme le brief et confirme qu’aucun message client ne partira sans validation.</li>
+              </ol>
             </div>
-          </section>
+          </div>
           <p class="cockpit-footnote">Plus vous l’utilisez, plus elle comprend vos clients, vos règles, vos exceptions et vos décisions. Chaque réponse reste reliée à sa source.</p>
         </div>
       </section>
@@ -254,7 +224,7 @@
 
           <div class="agent-rows">
             <article class="agent-row reveal">
-              <div class="agent-portrait agent-direction"><span>D</span><i></i><i></i><i></i></div>
+              <div class="agent-portrait agent-direction"><img src="assets/agent-direction-abstract.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async"></div>
               <div class="agent-row-content">
                 <div class="agent-row-head"><div><h3>Agent Direction</h3><p>PILOTAGE &amp; DÉCISIONS</p></div><span class="agent-status"><i></i> Actif</span></div>
                 <p>Prépare le brief du matin, compare le plan au réel et remonte uniquement les décisions qui ne peuvent pas attendre.</p>
@@ -262,7 +232,7 @@
               </div>
             </article>
             <article class="agent-row reveal">
-              <div class="agent-portrait agent-revenue"><span>R</span><i></i><i></i><i></i></div>
+              <div class="agent-portrait agent-revenue"><img src="assets/agent-revenue-abstract.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async"></div>
               <div class="agent-row-content">
                 <div class="agent-row-head"><div><h3>Agent Revenu</h3><p>CRM · RELANCES · PIPELINE</p></div><span class="agent-status"><i></i> Actif</span></div>
                 <p>Priorise les opportunités, repère les clients dormants, prépare les relances et explique les variations de pipeline.</p>
@@ -270,7 +240,7 @@
               </div>
             </article>
             <article class="agent-row reveal">
-              <div class="agent-portrait agent-operations"><span>O</span><i></i><i></i><i></i></div>
+              <div class="agent-portrait agent-operations"><img src="assets/agent-operations-abstract.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async"></div>
               <div class="agent-row-content">
                 <div class="agent-row-head"><div><h3>Agent Opérations</h3><p>CHARGE · DÉLAIS · MARGE</p></div><span class="agent-status"><i></i> Actif</span></div>
                 <p>Surveille les jalons, détecte les écarts de charge ou de marge et propose un replanning sourcé aux responsables.</p>
@@ -278,7 +248,7 @@
               </div>
             </article>
             <article class="agent-row reveal">
-              <div class="agent-portrait agent-analysis"><span>A</span><i></i><i></i><i></i></div>
+              <div class="agent-portrait agent-analysis"><img src="assets/agent-analysis-abstract.jpg" alt="" width="1024" height="1024" loading="lazy" decoding="async"></div>
               <div class="agent-row-content">
                 <div class="agent-row-head"><div><h3>Agent Analyse</h3><p>DONNÉES · SIGNAUX · ANOMALIES</p></div><span class="agent-status"><i></i> Actif</span></div>
                 <p>Croise les données de l’entreprise, détecte les anomalies et transforme les tendances en analyses sourcées pour la direction.</p>

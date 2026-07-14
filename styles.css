@@ -30,6 +30,7 @@ body {
   text-rendering: geometricPrecision;
   -webkit-font-smoothing: antialiased;
 }
+.sr-only { position: absolute !important; width: 1px !important; height: 1px !important; padding: 0 !important; margin: -1px !important; overflow: hidden !important; clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important; }
 body.modal-open { overflow: hidden; }
 button, input, textarea { font: inherit; color: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
@@ -196,6 +197,7 @@ h2 em, h1 em { color: var(--blue); font-weight: 400; }
 .bento-people .bento-media { object-position: 50% 53%; }
 
 .section-cockpit { background: linear-gradient(180deg,#fff,#f8fbfd 60%,#fff); }
+.section-cockpit > .container { width: min(1180px, calc(100% - 40px)); }
 .split-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: end; }
 .split-heading .mono-label { margin-bottom: 18px; }
 .split-heading h2 { font-size: 38px; }
@@ -203,6 +205,14 @@ h2 em, h1 em { color: var(--blue); font-weight: 400; }
 .split-copy > strong { display: block; margin-top: 13px; color: var(--navy); font-size: 13px; }
 .demo-disclaimer { margin-top: 13px; display: inline-flex; padding: 5px 8px; color: var(--blue); background: rgba(213,227,255,.5); border-radius: 6px; font-family: "JetBrains Mono",monospace; font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
 .cockpit-window { height: 680px; margin-top: 56px; display: grid; grid-template-columns: 218px 1fr; overflow: hidden; background: white; border: 1px solid rgba(197,198,206,.55); border-radius: 22px; box-shadow: var(--shadow); }
+.cockpit-motion-shell { position: relative; width: 100%; aspect-ratio: 1536 / 1020; margin-top: 48px; overflow: hidden; background: transparent; border: 0; border-radius: 0; box-shadow: none; }
+.cockpit-motion-mount, .cockpit-motion-poster, .cockpit-motion-poster img, .cockpit-motion-player { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.cockpit-motion-poster { margin: 0; opacity: 1; transition: opacity .7s ease; }
+.cockpit-motion-poster img { object-fit: contain; }
+.cockpit-motion-poster-final { display: none; }
+.cockpit-motion-player { opacity: 0; pointer-events: none; transition: opacity .7s ease; }
+.cockpit-motion-shell.is-ready .cockpit-motion-player { opacity: 1; }
+.cockpit-motion-shell.is-ready .cockpit-motion-poster { opacity: 0; }
 .cockpit-sidebar { padding: 22px 14px; color: white; background: var(--navy); }
 .mini-wordmark { padding: 0 9px; font-family: "Manrope",sans-serif; font-size: 23px; font-weight: 700; letter-spacing: -.05em; }.mini-wordmark span { color: #8abcea; }
 .company-switch { margin-top: 27px; padding: 10px; display: flex; align-items: center; gap: 9px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.08); border-radius: 10px; }
@@ -244,7 +254,11 @@ h2 em, h1 em { color: var(--blue); font-weight: 400; }
 .agent-rows { display: grid; gap: 18px; }
 .agent-row { min-height: 236px; display: grid; grid-template-columns: 260px 1fr; overflow: hidden; background: white; border: 1px solid rgba(197,198,206,.42); border-radius: 20px; }
 .agent-portrait { position: relative; overflow: hidden; display: grid; place-items: center; background: linear-gradient(145deg,#c8e4f9,#f3b2a4); }
-.agent-portrait::before { content: ""; position: absolute; width: 270px; height: 270px; border: 1px solid rgba(3,22,53,.16); border-radius: 50%; }.agent-portrait::after { content: ""; position: absolute; width: 170px; height: 170px; border: 1px solid rgba(3,22,53,.16); border-radius: 50%; }.agent-portrait > span { position: relative; z-index: 3; width: 74px; height: 74px; display: grid; place-items: center; color: white; background: var(--navy); border-radius: 50%; font-family: "Manrope",sans-serif; font-size: 27px; box-shadow: 0 18px 40px rgba(3,22,53,.2); }.agent-portrait i { position: absolute; z-index: 2; width: 13px; height: 13px; background: rgba(255,255,255,.88); border-radius: 50%; box-shadow: 0 5px 15px rgba(3,22,53,.14); }.agent-portrait i:nth-of-type(1) { top: 35px; left: 48px; }.agent-portrait i:nth-of-type(2) { right: 46px; bottom: 45px; }.agent-portrait i:nth-of-type(3) { top: 58px; right: 40px; }.agent-revenue { background: linear-gradient(145deg,#f4c6b4,#b6d8f2); }.agent-operations { background: linear-gradient(145deg,#a9cff0,#f3d8ca); }.agent-analysis { background: linear-gradient(145deg,#d5e4f7,#efc2b3); }
+.agent-portrait img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; object-fit: cover; }
+.agent-direction img { object-position: 50% 40%; }
+.agent-revenue img { object-position: 52% 42%; }
+.agent-operations img { object-position: 50% 44%; }
+.agent-analysis img { object-position: 48% 40%; }
 .agent-row-content { padding: 27px 31px 23px; }
 .agent-row-head { display: flex; align-items: flex-start; justify-content: space-between; }.agent-row-head h3 { margin: 0; color: var(--blue); font-size: 23px; font-weight: 500; }.agent-row-head p { margin: 3px 0 0; color: var(--muted); font-family: "JetBrains Mono",monospace; font-size: 7px; letter-spacing: .12em; }.agent-status { display: flex; align-items: center; gap: 5px; color: var(--green); font-family: "JetBrains Mono",monospace; font-size: 7px; letter-spacing: .08em; text-transform: uppercase; }.agent-status i { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
 .agent-row-content > p { max-width: 640px; margin: 18px 0 22px; color: var(--body); font-size: 13px; line-height: 1.65; }
@@ -276,6 +290,10 @@ h2 em, h1 em { color: var(--blue); font-weight: 400; }
 .contact-modal { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 20px; visibility: hidden; opacity: 0; transition: visibility .25s ease, opacity .25s ease; }.contact-modal.is-open { visibility: visible; opacity: 1; }.modal-backdrop { position: absolute; inset: 0; background: rgba(3,22,53,.72); backdrop-filter: blur(12px); }.modal-card { position: relative; z-index: 2; width: min(512px,100%); padding: 38px; background: rgba(255,255,255,.94); border: 1px solid rgba(255,255,255,.8); border-radius: 24px; box-shadow: 0 30px 120px rgba(3,22,53,.26); transform: translateY(8px) scale(.99); transition: transform .3s ease; }.contact-modal.is-open .modal-card { transform: none; }.modal-close { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; display: grid; place-items: center; color: var(--muted); background: var(--surface); border-radius: 50%; font-size: 21px; line-height: 1; }.modal-mark { width: 44px; height: 44px; margin-bottom: 22px; display: grid; place-items: center; color: white; background: var(--navy); border-radius: 50%; font-family: "Manrope",sans-serif; font-size: 14px; }.modal-card h2 { margin-top: 12px; font-size: 31px; }.modal-card > p:not(.mono-label) { margin: 15px 0 21px; color: var(--body); font-size: 13px; line-height: 1.62; }.contact-option { min-height: 69px; padding: 10px 12px 10px 15px; display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(197,198,206,.5); border-radius: 12px; transition: background .2s ease, transform .2s ease; }.contact-option + .contact-option { margin-top: 8px; }.contact-option:hover { background: var(--surface); transform: translateX(2px); }.contact-option span { display: block; }.contact-option strong, .contact-option small { display: block; }.contact-option strong { color: var(--navy); font-size: 11px; }.contact-option small { margin-top: 3px; color: var(--muted); font-size: 9px; }.contact-option svg { width: 18px; height: 18px; fill: none; stroke: var(--navy); stroke-width: 1.6; }.modal-note { display: block; margin-top: 15px; color: var(--muted); text-align: center; font-size: 8px; }
 
 .js .reveal { opacity: 1; transform: none; }
+
+@media (max-width: 1024px) {
+  .cockpit-motion-shell { width: min(100%, 640px); aspect-ratio: 780 / 1392; margin-inline: auto; }
+}
 
 @media (max-width: 900px) {
   .nav-links { display: none; }
@@ -330,6 +348,7 @@ h2 em, h1 em { color: var(--blue); font-weight: 400; }
   .section-sticky { position: static; }
   .split-copy p { font-size: 13px; }
   .cockpit-window { height: 696px; margin-top: 36px; grid-template-columns: 1fr; border-radius: 17px; }
+  .cockpit-motion-shell { margin-top: 36px; }
   .cockpit-sidebar { display: none; }
   .cockpit-body { padding: 15px; }
   .cockpit-greeting h3 { font-size: 22px; }.live-chip { display: none; }
@@ -398,6 +417,8 @@ h2 em, h1 em { color: var(--blue); font-weight: 400; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .cockpit-motion-poster-start { display: none; }
+  .cockpit-motion-poster-final { display: block; }
   *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
   .js .reveal { opacity: 1; transform: none; }
 }

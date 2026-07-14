@@ -11,8 +11,9 @@ Landing page statique présentant une infrastructure d’entreprise qui réunit 
 
 - `index.html` — structure et contenu
 - `styles.css` — design responsive
-- `script.js` — mosaïque, accordéons, animations et modale accessible
+- `script.js` — interactions, chargement du cockpit au scroll et modale accessible
 - `assets/` — visuels originaux générés pour le projet
+- `dashboard-motion/` — cockpit HyperFrames desktop et mobile, animé sur 20 secondes
 
 ## Lancer localement
 

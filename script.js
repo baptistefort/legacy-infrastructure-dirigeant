@@ -2,6 +2,66 @@ document.documentElement.classList.add("js");
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// The cockpit is mounted only when it enters the viewport. This keeps the
+// conversation at its first question until the visitor reaches the section,
+// avoids running a hidden desktop/mobile player, and leaves a still fallback
+// in place if motion is reduced or the player CDN is unavailable.
+const cockpitShell = document.querySelector("[data-cockpit-motion]");
+const cockpitMount = cockpitShell?.querySelector(".cockpit-motion-mount");
+const compactCockpit = window.matchMedia("(max-width: 1024px)");
+let cockpitPlayer = null;
+let cockpitVariant = null;
+
+function mountCockpit() {
+  if (!cockpitShell || !cockpitMount || reduceMotion) return;
+
+  const variant = compactCockpit.matches ? "mobile" : "desktop";
+  if (cockpitPlayer && cockpitVariant === variant) return;
+
+  cockpitShell.classList.remove("is-ready");
+  cockpitMount.replaceChildren();
+
+  const player = document.createElement("hyperframes-player");
+  const mobile = variant === "mobile";
+  player.className = "cockpit-motion-player";
+  player.setAttribute("src", cockpitShell.dataset[`${variant}Src`]);
+  player.setAttribute("width", mobile ? "780" : "1536");
+  player.setAttribute("height", mobile ? "1392" : "1020");
+  player.setAttribute("autoplay", "");
+  player.setAttribute("loop", "");
+  player.setAttribute("muted", "");
+  player.setAttribute("aria-hidden", "true");
+  player.setAttribute("tabindex", "-1");
+  player.inert = true;
+
+  cockpitMount.append(player);
+  cockpitPlayer = player;
+  cockpitVariant = variant;
+
+  window.setTimeout(() => cockpitShell.classList.add("is-ready"), 650);
+}
+
+if (cockpitShell && !reduceMotion) {
+  if ("IntersectionObserver" in window) {
+    const cockpitObserver = new IntersectionObserver(
+      (entries, observer) => {
+        const entry = entries[0];
+        if (!entry?.isIntersecting) return;
+        mountCockpit();
+        observer.unobserve(entry.target);
+      },
+      { rootMargin: "0px 0px -12%", threshold: 0.18 },
+    );
+    cockpitObserver.observe(cockpitShell);
+  } else {
+    mountCockpit();
+  }
+
+  compactCockpit.addEventListener?.("change", () => {
+    if (cockpitPlayer) mountCockpit();
+  });
+}
+
 // Reveal sections only when JavaScript is available.
 const reveals = document.querySelectorAll(".reveal");
 if (reduceMotion || !("IntersectionObserver" in window)) {
